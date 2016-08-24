@@ -92,11 +92,11 @@ Vagrant.configure(2) do |config|
     cd /vagrant
     mkdir -p ole
     cd ole
-    wget https://github.com/open-learning-exchange/BeLL-Apps/archive/0.12.16.zip
-    unzip 0.12.16.zip
+    wget https://github.com/open-learning-exchange/BeLL-Apps/archive/0.12.42.zip
+    unzip 0.12.42.zip
     #ln -s BeLL-Apps-* BeLL-Apps ## won't work in windows
     #cd BeLL-Apps
-    cd BeLL-Apps-0.12.16
+    cd BeLL-Apps-0.12.42
     chmod +x node_modules/.bin/couchapp
     ## check if docker is running
     while ! curl -X GET http://127.0.0.1:5984/_all_dbs ; do
@@ -118,7 +118,7 @@ Vagrant.configure(2) do |config|
       curl -d @$filename -H "Content-Type: application/json" -X POST http://127.0.0.1:5984/languages;
     done
     curl -d @init_docs/ConfigurationsDoc-Community.txt -H "Content-Type: application/json" -X POST http://127.0.0.1:5984/configurations
-    curl -d @init_docs/admin.txt -H "Content-Type: application/json" -X POST http://127.0.0.1:5984/members
+    #curl -d @init_docs/admin.txt -H "Content-Type: application/json" -X POST http://127.0.0.1:5984/members
 
     ## fix of log file
     curl -X PUT 'http://127.0.0.1:5984/_config/log/file' -d '"/usr/local/var/log/couchdb/couch.log"'
